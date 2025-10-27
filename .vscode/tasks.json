@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "🔨 Build DelphiSourceArt (DCC32)",
+			"type": "shell",
+			"command": "${workspaceFolder}\\DelphiSourceArt\\build.bat",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"options": {
+				"cwd": "${workspaceFolder}\\DelphiSourceArt"
+			}
+		},
+		{
+			"label": "🚀 Build and Start DelphiSourceArt",
+			"type": "shell",
+			"command": "${workspaceFolder}\\DelphiSourceArt\\build_and_start.bat",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build",
+			"options": {
+				"cwd": "${workspaceFolder}\\DelphiSourceArt"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		}
+	]
+}

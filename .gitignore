@@ -1,0 +1,84 @@
+# Delphi RAD Studio project gitignore
+
+# Compiled Units
+*.dcu
+*.~pas
+*.~dfm
+*.~dpr
+*.~ddp
+*.o
+*.obj
+
+# Compiled Executables
+*.exe
+*.dll
+*.bpl
+*.bpi
+*.dcp
+*.so
+*.apk
+*.drc
+*.map
+*.dres
+*.rsm
+*.tds
+*.cbk
+*.cbp
+
+# Build Output Directories
+bin/
+dcu/
+__history/
+__recovery/
+
+# IDE Specific Files
+*.identcache
+*.projdata
+*.tvsconfig
+*.dsk
+*.local
+*.stat
+*.cfg
+*.deployproj
+
+# Backup Files
+*.~*
+*~
+*.bak
+*.old
+
+# Debug Files
+*.pdb
+*.tlog
+
+# Model Maker and Documentation
+*.mdr
+*.mda
+*.md5
+
+# Project-specific temporary files
+*.delphilsp.json
+*.delphilsp.local.json
+
+# Platform specific
+Win32/
+Win64/
+Android/
+iOS/
+OSX/
+Linux/
+
+# User-specific files
+*.user
+*.suo
+*.sdf
+*.opensdf
+
+# Castalia statistics
+*.stat
+
+# Deployment files
+Deploy/
+
+# FMX Compiled Binary Assets
+*.dproj.local
