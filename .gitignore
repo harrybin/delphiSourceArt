@@ -57,8 +57,8 @@ __recovery/
 *.md5
 
 # Project-specific temporary files
-*.delphilsp.json
-*.delphilsp.local.json
+# *.delphilsp.json
+# *.delphilsp.local.json
 
 # Platform specific
 Win32/
