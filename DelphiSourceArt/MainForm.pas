@@ -66,7 +66,7 @@ type
     function IsClassDeclaration(const Line: string): Boolean;
     function IsMethodDeclaration(const Line: string): Boolean;
     procedure PrepareVisualization;
-    procedure DrawColorLegend;
+    procedure PaintLegend;
     function GetColorForComplexity(LineCount: Integer): TColor;
     function FindElementAtPosition(X, Y: Integer): Integer;
   public
@@ -244,7 +244,7 @@ begin
   end;
 end;
 
-procedure TFormMain.DrawColorLegend;
+procedure TFormMain.PaintLegend;
 var
   i: Integer;
   LegendX, LegendY: Integer;
@@ -567,7 +567,7 @@ begin
     end;
     
     // Legende anzeigen
-    DrawColorLegend;
+    PaintLegend;
   end;
 end;
 
