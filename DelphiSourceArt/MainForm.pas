@@ -23,6 +23,8 @@ type
     StartLine: Integer;
     EndLine: Integer;
     Methods: TList<TMethodMetrics>;
+    
+    
   end;
 
   // Visualisierungselement für Animation
@@ -33,6 +35,7 @@ type
     Color: TColor;
     Alpha: Byte;  // für Fade-In Effekt
     Visible: Boolean;
+
   end;
 
   TFormMain = class(TForm)
@@ -63,9 +66,9 @@ type
     function IsClassDeclaration(const Line: string): Boolean;
     function IsMethodDeclaration(const Line: string): Boolean;
     procedure PrepareVisualization;
+    procedure PaintLegend;
     function GetColorForComplexity(LineCount: Integer): TColor;
     function FindElementAtPosition(X, Y: Integer): Integer;
-    procedure PaintLegend;
   public
   end;
 
@@ -238,6 +241,35 @@ begin
     CurrentClass.EndLine := Lines.Count - 1;
     CurrentClass.LineCount := CurrentClass.EndLine - CurrentClass.StartLine + 1;
     FClasses.Add(CurrentClass);
+  end;
+end;
+
+procedure TFormMain.PaintLegend;
+var
+  i: Integer;
+  LegendX, LegendY: Integer;
+  LegendWidth, LegendHeight: Integer;
+  ClassMetrics: TClassMetrics;
+  LegendRect: TRect;
+begin
+  LegendX := PaintBox.Width - 150;
+  LegendY := 10;
+  LegendWidth := 140;
+  LegendHeight := 20;
+
+  with PaintBox.Canvas do
+  begin
+    for i := 0 to FClasses.Count - 1 do
+    begin
+      ClassMetrics := FClasses[i];
+      Brush.Color := GetColorForComplexity(ClassMetrics.LineCount);
+      LegendRect := Rect(LegendX, LegendY + i * (LegendHeight + 5), 
+                         LegendX + LegendWidth, LegendY + (i + 1) * LegendHeight);
+      FillRect(LegendRect);
+      
+      Font.Color := clWhite;
+      TextOut(LegendX + 5, LegendY + i * (LegendHeight + 5), ClassMetrics.Name);
+    end;
   end;
 end;
 
@@ -536,60 +568,6 @@ begin
     
     // Legende anzeigen
     PaintLegend;
-  end;
-end;
-
-// painting a legend for the different complexity colors
-procedure TFormMain.PaintLegend;
-var
-  LegendX, LegendY: Integer;
-  LegendW, LegendH: Integer;
-begin
-  with PaintBox.Canvas do
-  begin
-    LegendX := 10;
-    LegendY := 10;
-    LegendW := 180;
-    LegendH := 120;
-    
-    // Legende-Hintergrund
-    Brush.Color := RGB(30, 30, 40);
-    Pen.Color := RGB(100, 100, 120);
-    Pen.Width := 2;
-    Rectangle(LegendX, LegendY, LegendX + LegendW, LegendY + LegendH);
-    
-    // Titel
-    Font.Color := clWhite;
-    Font.Size := 10;
-    Font.Style := [fsBold];
-    TextOut(LegendX + 10, LegendY + 10, 'Komplexität (Zeilen)');
-    
-    Font.Style := [];
-    Font.Size := 9;
-    
-    // Grün - einfach
-    Brush.Color := RGB(100, 200, 100);
-    Pen.Color := RGB(100, 200, 100);
-    Rectangle(LegendX + 10, LegendY + 30, LegendX + 25, LegendY + 45);
-    TextOut(LegendX + 30, LegendY + 32, '< 50 (einfach)');
-    
-    // Gelb - mittel
-    Brush.Color := RGB(200, 200, 100);
-    Pen.Color := RGB(200, 200, 100);
-    Rectangle(LegendX + 10, LegendY + 50, LegendX + 25, LegendY + 65);
-    TextOut(LegendX + 30, LegendY + 52, '50-100 (mittel)');
-    
-    // Orange - komplex
-    Brush.Color := RGB(200, 150, 100);
-    Pen.Color := RGB(200, 150, 100);
-    Rectangle(LegendX + 10, LegendY + 70, LegendX + 25, LegendY + 85);
-    TextOut(LegendX + 30, LegendY + 72, '100-200 (komplex)');
-    
-    // Rot - sehr komplex
-    Brush.Color := RGB(200, 100, 100);
-    Pen.Color := RGB(200, 100, 100);
-    Rectangle(LegendX + 10, LegendY + 90, LegendX + 25, LegendY + 105);
-    TextOut(LegendX + 30, LegendY + 92, '> 200 (sehr komplex)');
   end;
 end;
 
