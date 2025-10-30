@@ -565,6 +565,9 @@ begin
       TextOut(TooltipX + 10, TooltipY + 50, 
               Format('Methoden: %d', [VisElement.ClassMetrics.Methods.Count]));
     end;
+    
+    // Legende anzeigen
+    DrawColorLegend;
   end;
 end;
 
