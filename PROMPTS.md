@@ -182,7 +182,7 @@ cerate a propmts history file as md file, where you add the prompts from this ch
 - **Vollständige Code-Analyse:** Klassen, Methoden, Zeilenzahlen
 - **Radiale Visualisierung:** "Code-Galaxie" mit farbcodierter Komplexität
 - **Animation:** Schrittweiser Aufbau mit Fade-In-Effekt
-- **Interaktivität:** Hover-Tooltips mit Klassen-Details
+- **Interaktivität:** Hover-Tooltips mit Klassen-Details     
 - **Build-System:** Ein-Klick-Kompilierung und Start
 
 ---
